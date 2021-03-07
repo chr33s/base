@@ -1,0 +1,49 @@
+import babel from "@rollup/plugin-babel";
+import commonjs from "@rollup/plugin-commonjs";
+import graphql from "@rollup/plugin-graphql";
+import html from "@rollup/plugin-html";
+import json from "@rollup/plugin-json";
+import resolve from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
+import url from "@rollup/plugin-url";
+import postcss from "rollup-plugin-postcss";
+
+export default [
+  {
+    input: "./src/app/index.jsx",
+    output: {
+      file: "./dist/app.js",
+      format: "iife",
+    },
+    plugins: [
+      replace({
+        "process.env.NODE_ENV": `'${process.env.NODE_ENV || "development"}'`,
+        "process.env.SENTRY_DSN": `'${process.env.SENTRY_DSN_APP}'`,
+      }),
+      json(),
+      resolve({
+        browser: true,
+        extensions: [".js", ".jsx", ".json"],
+      }),
+      commonjs(),
+      babel({ babelHelpers: "bundled" }),
+      postcss({ extract: true }),
+      url(),
+      html({
+        meta: [
+          { charset: "utf-8" },
+          { viewport: "width=device-width, initial-scale=1" },
+        ],
+        title: "App",
+      }),
+    ],
+  },
+  {
+    input: "./src/server/index.mjs",
+    output: {
+      file: "./dist/server/index.js",
+      format: "cjs",
+    },
+    plugins: [resolve({ preferBuiltins: true }), commonjs(), json(), graphql()],
+  },
+];

@@ -1,0 +1,27 @@
+name: Main Action
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  API_KEY: ${{ secrets.API_KEY }}
+
+jobs:
+  build:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Instal
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        run: npm run deploy

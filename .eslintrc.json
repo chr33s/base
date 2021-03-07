@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "globals": {
+    "browser": true,
+    "page": true
+  },
+  "parser": "babel-eslint",
+  "plugins": ["prettier", "jest"],
+  "root": true
+}
