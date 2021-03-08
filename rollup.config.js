@@ -7,6 +7,9 @@ import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import url from "@rollup/plugin-url";
 import postcss from "rollup-plugin-postcss";
+import { terser } from "rollup-plugin-terser";
+
+const isProduction = process.env.NODE_ENV === "production";
 
 export default [
   {
@@ -14,6 +17,7 @@ export default [
     output: {
       file: "./dist/app.js",
       format: "iife",
+      sourcemap: !isProduction,
     },
     plugins: [
       replace({
@@ -27,7 +31,10 @@ export default [
       }),
       commonjs(),
       babel({ babelHelpers: "bundled" }),
-      postcss({ extract: true }),
+      postcss({
+        extract: true,
+        minimize: isProduction,
+      }),
       url(),
       html({
         meta: [
@@ -36,6 +43,7 @@ export default [
         ],
         title: "App",
       }),
+      isProduction && terser(),
     ],
   },
   {
