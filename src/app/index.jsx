@@ -1,4 +1,4 @@
-import React, { StrictMode } from "react";
+import React from "react";
 import { render } from "react-dom";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
@@ -18,8 +18,8 @@ app.setAttribute("id", "app");
 document.body.appendChild(app);
 
 render(
-  <StrictMode>
+  <React.StrictMode>
     <App />
-  </StrictMode>,
+  </React.StrictMode>,
   app
 );

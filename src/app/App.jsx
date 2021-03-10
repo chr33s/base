@@ -1,10 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default function App() {
   return (
-    <Suspense fallback={() => <span>loading...</span>}>
+    <React.Suspense fallback={() => <span>loading...</span>}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -12,7 +12,7 @@ export default function App() {
           </Route>
         </Switch>
       </Router>
-    </Suspense>
+    </React.Suspense>
   );
 }
 
