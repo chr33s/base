@@ -2,7 +2,7 @@ import Ajv from "ajv";
 
 import { Exception } from "../utils/index.mjs";
 
-const ajv = new Ajv({ allErrors: true });
+const ajv = new Ajv.default({ allErrors: true });
 
 export function schema(schema) {
   return (req, res, next) => {
