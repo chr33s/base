@@ -21,6 +21,7 @@ export default [
     },
     plugins: [
       replace({
+        preventAssignment: true,
         "process.env.NODE_ENV": `'${process.env.NODE_ENV || "development"}'`,
         "process.env.SENTRY_DSN": `'${process.env.SENTRY_DSN_APP}'`,
       }),
@@ -49,6 +50,7 @@ export default [
   {
     input: "./src/server/index.mjs",
     output: {
+      exports: "auto",
       file: "./dist/server/index.js",
       format: "cjs",
     },
