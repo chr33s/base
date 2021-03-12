@@ -1,4 +1,5 @@
 {
   "css.validate": false,
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "javascript.suggestionActions.enabled": false
 }
