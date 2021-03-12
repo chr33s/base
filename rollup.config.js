@@ -6,6 +6,7 @@ import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import url from "@rollup/plugin-url";
+import copy from "rollup-plugin-copy";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 
@@ -29,6 +30,14 @@ export default [
       resolve({
         browser: true,
         extensions: [".js", ".jsx", ".json"],
+      }),
+      copy({
+        targets: [
+          {
+            src: ["./src/app/robots.txt", "./src/app/favicon.ico"],
+            dest: "./dist",
+          },
+        ],
       }),
       commonjs(),
       babel({ babelHelpers: "bundled" }),
