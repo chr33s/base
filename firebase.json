@@ -1,0 +1,53 @@
+{
+  "database": {
+    "rules": "firebase.database.json"
+  },
+  "emulators": {
+    "auth": {
+      "port": 8000
+    },
+    "firestore": {
+      "port": 8001
+    },
+    "functions": {
+      "port": 8002
+    },
+    "hosting": {
+      "port": 8080
+    },
+    "ui": {
+      "enabled": true
+    }
+  },
+  "firestore": {
+    "rules": "firebase.firestore.rules",
+    "indexes": "firebase.firestore.indexes.json"
+  },
+  "functions": {
+    "source": "dist/server"
+  },
+  "hosting": {
+    "public": "dist/app",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      {
+        "source": "**/*.@(css|ico|js|png|svg)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "firebase.storage.rules"
+  }
+}

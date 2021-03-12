@@ -1,0 +1,19 @@
+{
+  "name": "@chr33s/base",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "12.x"
+  },
+  "scripts": {
+    "dev": "firebase emulators:start",
+    "test:firebase": "firebase emulators:exec \"node ./src/server/index.test.ts\"",
+    "posttest:firebase": "killall node || true && killall java || true",
+    "predeploy": "git stash push -m 'deploy' -u",
+    "deploy": "firebase deploy -m $(git log -n 1 main --pretty=format:\"%H\")",
+    "postdeploy": "git push && git stash apply `git stash list | grep 'deploy' | cut -d: -f1`"
+  },
+  "dependencies": {
+    "firebase-tools": "9.6.1"
+  }
+}
