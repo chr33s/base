@@ -2,6 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {},
-  "properties": {},
+  "properties": {
+    "id": {
+      "pattern": ".{3,254}",
+      "type": "string"
+    }
+  },
+  "required": ["id"],
   "type": "object"
 }

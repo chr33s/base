@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import server from "./index.mjs";
+import server from "./index";
 
 afterAll((done) => {
   server.close(done);
@@ -9,7 +9,7 @@ afterAll((done) => {
 describe("server", function () {
   test("default", async () => {
     const res = await request(server).get("/");
-    expect(res.statusCode).toBe(200);
+    expect(res.status).toBe(200);
     expect(res.body.status).toBe("OK");
   });
 });

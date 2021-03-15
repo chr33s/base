@@ -1,4 +1,4 @@
 module.exports = {
-  moduleFileExtensions: ["js", "mjs"],
+  moduleFileExtensions: ["js", "ts"],
   testMatch: ["**/*.test.*"],
 };

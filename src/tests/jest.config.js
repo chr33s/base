@@ -1,5 +1,5 @@
 module.exports = {
-  moduleFileExtensions: ["js", "mjs"],
+  moduleFileExtensions: ["js", "ts", "tsx"],
   preset: "jest-playwright-preset",
   testMatch: ["**/*.test.*"],
 };

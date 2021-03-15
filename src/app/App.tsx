@@ -1,8 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import PropTypes from "prop-types";
 
-export default function App() {
+export const App: React.FunctionComponent = () => {
   return (
     <React.Suspense fallback={() => <span>loading...</span>}>
       <Router>
@@ -14,8 +13,6 @@ export default function App() {
       </Router>
     </React.Suspense>
   );
-}
-
-App.propTypes = {
-  match: PropTypes.object,
 };
+
+App.displayName = "App";

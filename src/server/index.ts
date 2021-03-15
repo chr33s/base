@@ -4,9 +4,8 @@ import debug from "debug";
 import express from "express";
 import fs from "fs";
 import path from "path";
-import url from "url";
 
-import { error, logger, promisify, schema } from "./middleware/index.mjs";
+import { error, logger, promisify, schema } from "./middleware/index";
 
 const log = debug("server");
 
@@ -26,7 +25,6 @@ server.use(Sentry.Handlers.tracingHandler());
 server.use(express.json());
 server.use(logger);
 
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const _schema = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, "./schema.json"), "utf-8")
 );

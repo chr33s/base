@@ -1,11 +1,16 @@
 import Ajv from "ajv";
+import express from "express";
 
-import { Exception } from "../utils/index.mjs";
+import { Exception } from "../utils/index";
 
-const ajv = new Ajv.default({ allErrors: true });
+const ajv = new Ajv({ allErrors: true });
 
-export function schema(schema) {
-  return (req, res, next) => {
+export function schema(schema: Record<string, unknown>) {
+  return (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ): express.NextFunction | void => {
     if ("schema" in req.query) {
       res.status(200).send(schema);
 

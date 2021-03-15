@@ -5,12 +5,19 @@
     "jest": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "plugin:jest-playwright/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "globals": {
     "browser": true,
     "page": true
   },
-  "parser": "babel-eslint",
-  "plugins": ["prettier", "jest"],
-  "root": true
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "jest"],
+  "root": true,
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  }
 }

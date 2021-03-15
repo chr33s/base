@@ -1,4 +1,4 @@
-import server from "../server/index.mjs";
+import server from "../server/index";
 
 const HOST = `http://localhost:${process.env.PORT}/`;
 

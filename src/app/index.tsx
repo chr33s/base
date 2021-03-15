@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 
-import App from "./App";
+import { App } from "./App";
 
 import "./index.css";
 

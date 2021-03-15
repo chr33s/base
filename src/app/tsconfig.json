@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "es6", "esnext"],
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "target": "esnext"
+  },
+  "extends": "../../tsconfig.base"
+}
