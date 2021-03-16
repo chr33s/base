@@ -1,5 +1,9 @@
 {
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "../../.eslintrc.json",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
   "globals": {
     "process": true
   },
