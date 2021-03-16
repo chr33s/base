@@ -7,7 +7,6 @@
   "globals": {
     "process": true
   },
-  "plugins": ["react"],
   "rules": {
     "react/forbid-prop-types": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
