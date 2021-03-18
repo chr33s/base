@@ -16,7 +16,7 @@ export default [
   {
     input: "./src/client/index.jsx",
     output: {
-      file: "./dist/client.js",
+      file: "./dist/client/index.js",
       format: "iife",
       sourcemap: !isProduction,
     },
@@ -35,7 +35,7 @@ export default [
         targets: [
           {
             src: ["./src/client/robots.txt", "./src/client/favicon.ico"],
-            dest: "./dist",
+            dest: "./dist/client",
           },
         ],
       }),
