@@ -1,4 +1,4 @@
 {
-  "exclude": ["./src/app"],
+  "exclude": ["./src/client"],
   "extends": "./tsconfig.base"
 }

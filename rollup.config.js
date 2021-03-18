@@ -17,9 +17,9 @@ const isProduction = process.env.NODE_ENV === "production";
 export default [
   {
     acornInjectPlugins: [jsx()],
-    input: "./src/app/index.tsx",
+    input: "./src/client/index.tsx",
     output: {
-      file: "./dist/app.js",
+      file: "./dist/client/index.js",
       format: "iife",
       sourcemap: !isProduction,
     },
@@ -41,8 +41,8 @@ export default [
       copy({
         targets: [
           {
-            src: ["./src/app/robots.txt", "./src/app/favicon.ico"],
-            dest: "./dist",
+            src: ["./src/client/robots.txt", "./src/client/favicon.ico"],
+            dest: "./dist/client",
           },
         ],
       }),
