@@ -11,6 +11,6 @@
     "page": true
   },
   "parser": "babel-eslint",
-  "plugins": ["prettier", "jest"],
+  "plugins": ["prettier", "jest", "graphql"],
   "root": true
 }
