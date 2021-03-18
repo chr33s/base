@@ -6,7 +6,7 @@
     "node": "12.x"
   },
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist node_modules/.cache",
     "build": "rollup --config",
     "build:schema": "run() { for i in `find ./src/server -name '*.d.ts' -not -name 'index.d.ts' -not -path '*/node_modules/*' -exec basename {} \\;` ; do f=${i%.d.ts}; ts-json-schema-generator --no-top-ref --path ${i} --type $(echo ${f:0:1} | tr '[a-z]' '[A-Z]')${f:1} --out ./src/server/${f}.json --tsconfig ./tsconfig.base.json; done; exit 0; }; run",
     "postbuild:schema": "prettier --write './src/server/*.json' &> /dev/null",
@@ -42,7 +42,6 @@
     "@babel/preset-typescript": "7.13.0",
     "@rollup/plugin-babel": "5.3.0",
     "@rollup/plugin-commonjs": "17.1.0",
-    "@rollup/plugin-graphql": "1.0.0",
     "@rollup/plugin-html": "0.2.3",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "11.2.0",
@@ -64,6 +63,7 @@
     "acorn-jsx": "5.3.1",
     "autoprefixer": "10.2.5",
     "babel-eslint": "10.1.0",
+    "babel-plugin-import-graphql": "2.8.1",
     "cssnano": "4.1.10",
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
@@ -73,7 +73,6 @@
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "graphql": "15.5.0",
-    "graphql-import-macro": "1.0.0",
     "immutability-helper": "3.1.1",
     "jest": "26.6.3",
     "jest-playwright-preset": "1.5.1",

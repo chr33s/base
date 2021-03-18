@@ -1,7 +1,6 @@
 import jsx from "acorn-jsx";
 import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
-import graphql from "@rollup/plugin-graphql";
 import html from "@rollup/plugin-html";
 import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
@@ -74,8 +73,8 @@ export default [
       resolve({ preferBuiltins: true }),
       typescript({ sourceMap: !isProduction }),
       commonjs(),
+      babel({ babelHelpers: "bundled" }),
       json(),
-      graphql(),
     ],
   },
 ];
