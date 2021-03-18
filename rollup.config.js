@@ -14,9 +14,9 @@ const isProduction = process.env.NODE_ENV === "production";
 
 export default [
   {
-    input: "./src/app/index.jsx",
+    input: "./src/client/index.jsx",
     output: {
-      file: "./dist/app.js",
+      file: "./dist/client.js",
       format: "iife",
       sourcemap: !isProduction,
     },
@@ -34,7 +34,7 @@ export default [
       copy({
         targets: [
           {
-            src: ["./src/app/robots.txt", "./src/app/favicon.ico"],
+            src: ["./src/client/robots.txt", "./src/client/favicon.ico"],
             dest: "./dist",
           },
         ],
@@ -49,7 +49,7 @@ export default [
       html({
         meta: [
           { charset: "utf-8" },
-          { viewport: "width=device-width, initial-scale=1" },
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
         ],
         title: "App",
       }),
