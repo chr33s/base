@@ -5,7 +5,7 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 
-import { error, logger, promisify, schema } from "./middleware/index";
+import { error, logger, promisify, schema } from "./middleware";
 
 const log = debug("server");
 
