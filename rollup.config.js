@@ -6,7 +6,6 @@ import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import url from "@rollup/plugin-url";
-import typescript from "@rollup/plugin-typescript";
 import copy from "rollup-plugin-copy";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
@@ -19,7 +18,7 @@ export default [
     input: "./src/client/index.tsx",
     output: {
       file: "./dist/client/index.js",
-      format: "iife",
+      format: "esm",
       sourcemap: !isProduction,
     },
     plugins: [
@@ -28,15 +27,11 @@ export default [
         "process.env.NODE_ENV": `'${process.env.NODE_ENV || "development"}'`,
         "process.env.SENTRY_DSN": `'${process.env.SENTRY_DSN_APP}'`,
       }),
-      json(),
-      typescript({
-        jsx: "preserve",
-        sourceMap: !isProduction,
-      }),
       resolve({
         browser: true,
         extensions: ["js", ".json", "jsx", ".ts", ".tsx"],
       }),
+      json(),
       copy({
         targets: [
           {
@@ -46,7 +41,10 @@ export default [
         ],
       }),
       commonjs(),
-      babel({ babelHelpers: "bundled" }),
+      babel({
+        babelHelpers: "bundled",
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      }),
       postcss({
         extract: true,
         minimize: isProduction,
@@ -70,10 +68,17 @@ export default [
       format: "cjs",
     },
     plugins: [
-      resolve({ preferBuiltins: true }),
-      typescript({ sourceMap: !isProduction }),
+      resolve({
+        extensions: ["js", ".json", ".ts"],
+        jsnext: true,
+        module: true,
+        preferBuiltins: true,
+      }),
       commonjs(),
-      babel({ babelHelpers: "bundled" }),
+      babel({
+        babelHelpers: "bundled",
+        extensions: [".js", ".ts"],
+      }),
       json(),
     ],
   },

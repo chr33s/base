@@ -1,7 +1,7 @@
 import Ajv from "ajv";
 import express from "express";
 
-import { Exception } from "../utils/index";
+import { Exception } from "../utils";
 
 const ajv = new Ajv({ allErrors: true });
 

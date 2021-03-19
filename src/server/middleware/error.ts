@@ -1,7 +1,8 @@
 import debug from "debug";
 import express from "express";
 
-import { Exception, ExceptionProps } from "../utils/index";
+import { ExceptionProps } from "../types";
+import { Exception } from "../utils";
 
 const log = debug("app:middleware:error");
 

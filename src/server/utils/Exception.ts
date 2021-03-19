@@ -15,5 +15,3 @@ export class Exception extends Error {
     Object.assign(this, args);
   }
 }
-
-export { ExceptionProps };
