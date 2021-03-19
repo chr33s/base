@@ -4,6 +4,7 @@ import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 
 import { App } from "./App";
+import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
 
@@ -23,3 +24,5 @@ render(
   </React.StrictMode>,
   app
 );
+
+serviceWorker.unregister();
