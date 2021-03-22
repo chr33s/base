@@ -15,7 +15,7 @@
     "page": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier", "jest", "graphql"],
+  "plugins": ["@typescript-eslint", "prettier", "jest"],
   "root": true,
   "rules": {
     "@typescript-eslint/no-explicit-any": "off"
