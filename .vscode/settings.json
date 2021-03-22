@@ -1,0 +1,6 @@
+{
+  "eslint.validate": ["javascript", "javascriptreact", "graphql"],
+  "eslint.options": {
+    "extentions": [".gql", ".js", ".jsx"]
+  }
+}
