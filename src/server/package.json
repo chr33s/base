@@ -1,0 +1,13 @@
+{
+  "name": "@chr33s/base-server",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {
+    "debug": "4.3.1",
+    "express": "4.17.1",
+    "express-graphql": "0.12.0"
+  }
+}

@@ -1,4 +1,9 @@
 {
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "overrides": [
     {
       "files": ["src/client/**/*.gql"],
@@ -61,5 +66,10 @@
         "variables-in-allowed-position": ["error"]
       }
     }
-  ]
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "root": true
 }
