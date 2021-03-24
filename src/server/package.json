@@ -1,0 +1,16 @@
+{
+  "name": "@chr33s/base-server",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {
+    "@sentry/node": "6.2.3",
+    "@sentry/tracing": "6.2.3",
+    "ajv": "7.2.3",
+    "debug": "4.3.1",
+    "express": "4.17.1",
+    "node-fetch": "2.6.1"
+  }
+}

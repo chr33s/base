@@ -1,6 +1,5 @@
 {
   "env": {
-    "browser": true,
     "es6": true,
     "jest": true,
     "node": true
@@ -10,7 +9,7 @@
     "browser": true,
     "page": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "plugins": ["prettier", "jest"],
   "root": true
 }
