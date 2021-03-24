@@ -11,5 +11,8 @@
   },
   "parser": "@babel/eslint-parser",
   "plugins": ["prettier", "jest"],
-  "root": true
+  "root": true,
+  "rules": {
+    "sort-imports": ["error"]
+  }
 }

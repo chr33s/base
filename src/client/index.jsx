@@ -1,12 +1,10 @@
+import "./index.css";
+import * as Sentry from "@sentry/react";
+import * as serviceWorker from "./serviceWorker";
+import App from "./App";
+import { Integrations } from "@sentry/tracing";
 import React from "react";
 import { render } from "react-dom";
-import * as Sentry from "@sentry/react";
-import { Integrations } from "@sentry/tracing";
-
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-
-import "./index.css";
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,

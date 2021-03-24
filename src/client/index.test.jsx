@@ -1,7 +1,6 @@
-import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-
 import App from "./App";
+import React from "react";
 
 describe("app", function () {
   test("renders", () => {

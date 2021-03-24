@@ -1,6 +1,5 @@
-import debug from "debug";
-
 import { Exception } from "../utils/index.mjs";
+import debug from "debug";
 
 const log = debug("app:middleware:error");
 

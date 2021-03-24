@@ -1,12 +1,11 @@
 import * as Sentry from "@sentry/node";
 import * as Tracing from "@sentry/tracing";
+import { error, logger, promisify, schema } from "./middleware/index.mjs";
 import debug from "debug";
 import express from "express";
 import fs from "fs";
 import path from "path";
 import url from "url";
-
-import { error, logger, promisify, schema } from "./middleware/index.mjs";
 
 const log = debug("server");
 

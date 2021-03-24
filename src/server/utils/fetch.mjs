@@ -1,6 +1,5 @@
-import _fetch from "node-fetch";
-
 import { Exception } from "./Exception.mjs";
+import _fetch from "node-fetch";
 
 export async function fetch(uri, params) {
   uri = uri.replace(/(?:[^:])(\/{2,})/g, (match, group) =>

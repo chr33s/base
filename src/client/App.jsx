@@ -1,6 +1,6 @@
-import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, HashRouter as Router, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
+import React from "react";
 
 export default function App() {
   return (
