@@ -1,9 +1,9 @@
 {
   "name": "@chr33s/base",
-  "version": "1.0.0",
+  "version": "independent",
   "private": true,
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "scripts": {
     "dev": "firebase emulators:start",

@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
+  "workspaces": [
+    "src/*"
+  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "dependencies": {
     "firebase-admin": "9.5.0",
     "firebase-functions": "3.13.2"
