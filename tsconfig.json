@@ -1,0 +1,33 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"allowJs": true,
+		"baseUrl": "./",
+		"composite": false,
+		"declaration": true,
+		"declarationMap": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"inlineSources": false,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
+		"lib": ["dom", "dom.iterable", "es2022"],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noEmit": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"preserveWatchOutput": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "es2022",
+		"types": ["vitest/globals", "node", "vite/client"]
+	},
+	"display": "Base",
+	"exclude": ["node_modules"],
+	"include": ["./src/**/*.ts", "./src/**/*.tsx", ".ladle"]
+}

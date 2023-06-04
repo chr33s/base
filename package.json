@@ -1,0 +1,167 @@
+{
+	"name": "@chr33s/base",
+	"version": "0.1.0",
+	"private": true,
+	"engines": {
+		"npm": ">=9.0.0",
+		"node": ">=18.0.0"
+	},
+	"scripts": {
+		"build": "npm-run-all --parallel build:*",
+		"build:client": "vite build",
+		"build:server": "rollup --config rollup.config.ts --configPlugin rollup-plugin-esbuild",
+		"clean": "rm -rf .eslintcache dist node_modules/.{cache,vite,vitest}",
+		"checks": "npm-run-all --sequential format lint typecheck",
+		"docker:build": "DOCKER_BUILDKIT=1 docker build --rm --tag ${npm_package_name/@}:$npm_package_version .",
+		"docker:run": "export $(cat .env.local | xargs); docker run --rm --env-file .env.local --publish ${PORT_CLIENT}:${PORT_SERVER}/tcp --name $(echo ${npm_package_name/@} | sed -r 's/[/]/-/g') ${npm_package_name/@}:$npm_package_version",
+		"docker:publish": "docker push ghcr.io/${npm_package_name/@}:$npm_package_version",
+		"format": "prettier --write '**/*.{css,html,js,json,jsx,md,svg,ts,tsx,yml}'",
+		"lint": "npm-run-all --parallel lint:*",
+		"lint:actions": "actionlint || true",
+		"lint:css": "stylelint --allow-empty-input --quiet 'src/**/*.css'",
+		"lint:docker": "hadolint Dockerfile || true",
+		"lint:js": "eslint --cache '**/*.{js,jsx,ts,tsx}'",
+		"start": "npm-run-all --parallel start:server start:client",
+		"start:client": "vite dev",
+		"start:server": "ts-node ./src/server",
+		"stories": "ladle serve",
+		"test": "vitest",
+		"test:e2e": "playwright test",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"debug": "4.3.4",
+		"express": "4.18.2"
+	},
+	"devDependencies": {
+		"@graphql-eslint/eslint-plugin": "3.19.1",
+		"@ladle/react": "2.14.0",
+		"@playwright/test": "1.35.0",
+		"@rollup/plugin-commonjs": "25.0.0",
+		"@rollup/plugin-json": "6.0.0",
+		"@rollup/plugin-node-resolve": "15.1.0",
+		"@types/debug": "4.1.8",
+		"@types/express": "4.17.17",
+		"@types/node": "20.2.5",
+		"@types/react": "18.2.9",
+		"@types/react-dom": "18.2.4",
+		"@types/react-test-renderer": "18.0.0",
+		"@types/supertest": "2.0.12",
+		"@typescript-eslint/eslint-plugin": "5.59.9",
+		"@typescript-eslint/parser": "5.59.9",
+		"@vitejs/plugin-react": "4.0.0",
+		"dotenv": "16.1.4",
+		"eslint": "8.42.0",
+		"eslint-config-prettier": "8.8.0",
+		"eslint-plugin-react": "7.32.2",
+		"eslint-plugin-react-hooks": "4.6.0",
+		"eslint-plugin-react-refresh": "0.4.1",
+		"graphql": "16.6.0",
+		"happy-dom": "9.20.3",
+		"npm-run-all": "4.1.5",
+		"postcss": "8.4.24",
+		"postcss-import": "15.1.0",
+		"postcss-preset-env": "8.4.2",
+		"prettier": "2.8.8",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-test-renderer": "18.2.0",
+		"rollup-plugin-esbuild": "5.0.0",
+		"stylelint": "15.7.0",
+		"stylelint-config-standard": "33.0.0",
+		"stylelint-order": "6.0.3",
+		"supertest": "6.3.3",
+		"ts-node": "10.9.1",
+		"typescript": "5.0.4",
+		"vite": "4.3.9",
+		"vitest": "0.32.0"
+	},
+	"browserslist": [
+		"last 3 chrome versions",
+		"last 3 firefox versions",
+		"last 3 opera versions",
+		"last 3 edge versions",
+		"last 3 safari versions",
+		"last 3 chromeandroid versions",
+		"last 1 firefoxandroid versions",
+		"ios >= 13.4"
+	],
+	"eslintConfig": {
+		"extends": [
+			"plugin:@typescript-eslint/recommended",
+			"plugin:react/recommended",
+			"plugin:react-hooks/recommended",
+			"prettier"
+		],
+		"ignorePatterns": [
+			"**/node_modules/*",
+			"**/dist/*"
+		],
+		"overrides": [
+			{
+				"files": [
+					"*.ts",
+					"*.tsx"
+				],
+				"processor": "@graphql-eslint/graphql"
+			},
+			{
+				"files": [
+					"*.graphql"
+				],
+				"parser": "@graphql-eslint/eslint-plugin",
+				"plugins": [
+					"@graphql-eslint"
+				]
+			}
+		],
+		"parser": "@typescript-eslint/parser",
+		"plugins": [
+			"@typescript-eslint",
+			"react-refresh"
+		],
+		"root": true,
+		"rules": {
+			"@typescript-eslint/no-explicit-any": "off",
+			"react-refresh/only-export-components": "warn"
+		},
+		"settings": {
+			"react": {
+				"version": "detect"
+			}
+		}
+	},
+	"postcss": {
+		"map": true,
+		"plugins": {
+			"postcss-import": {},
+			"postcss-preset-env": {},
+			"autoprefixer": {}
+		}
+	},
+	"prettier": {
+		"overrides": [
+			{
+				"files": "*.svg",
+				"options": {
+					"parser": "html"
+				}
+			}
+		]
+	},
+	"stylelint": {
+		"extends": "stylelint-config-standard",
+		"plugins": [
+			"stylelint-order"
+		],
+		"rules": {
+			"no-descending-specificity": null,
+			"no-unknown-animations": null,
+			"order/order": [
+				"custom-properties",
+				"declarations"
+			],
+			"order/properties-alphabetical-order": true
+		}
+	}
+}

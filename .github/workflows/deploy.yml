@@ -1,0 +1,67 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v*.*.*"
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+    env:
+      NODE_ENV: "production"
+      REGISTRY: "ghcr.io"
+      TEST_TAG: "${{ github.repository }}:test-${{ github.sha }}"
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/setup-qemu-action@v2
+        with:
+          platforms: arm64
+      - uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/metadata-action@v4
+        id: meta
+        with:
+          images: |
+            ${{ env.REGISTRY }}/${{ github.repository }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=tag
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+      - uses: docker/setup-buildx-action@v2
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          load: true
+          platforms: linux/amd64
+          tags: ${{ env.TEST_TAG }}
+      - run: docker run --detach --env PORT_SERVER=8081 --interactive --rm --tty ${{ env.TEST_TAG }} | xargs echo stdout= | tr -d '[:space:]' >> $GITHUB_OUTPUT
+        id: docker-run
+      - run: sleep 15s
+        shell: bash
+      - run: docker stop ${{ steps.docker-run.outputs.stdout }}
+      - run: docker rmi ${{ env.TEST_TAG }}
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: |
+            linux/amd64
+          # linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+      - run: echo "releasing ${{ github.repository }}:${{ github.ref_name }}"
+        if: github.ref_type == 'tag'

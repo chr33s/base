@@ -1,0 +1,4 @@
+.eslintcache
+.env.*
+dist
+node_modules
