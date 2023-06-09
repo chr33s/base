@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     env:
+      LOG_LEVEL: "info"
+      LOGTAIL_TOKEN: "${{ secrets.LOGTAIL_TOKEN }}"
+      LOGTAIL_TOKEN_DOCKER: "${{ secrets.LOGTAIL_TOKEN_DOCKER }}"
       NODE_ENV: "production"
       REGISTRY: "ghcr.io"
       SENTRY_AUTH_TOKEN: "${{ secrets.SENTRY_AUTH_TOKEN }}"
@@ -52,7 +55,7 @@ jobs:
           load: true
           platforms: linux/amd64
           tags: ${{ env.TEST_TAG }}
-      - run: docker run --detach --env PORT_SERVER=8081 --interactive --rm --tty ${{ env.TEST_TAG }} | xargs echo stdout= | tr -d '[:space:]' >> $GITHUB_OUTPUT
+      - run: docker run --detach --env PORT_SERVER=8081 --env LOGTAIL_TOKEN_DOCKER=${{ env.LOGTAIL_TOKEN_DOCKER }} --interactive --rm --tty ${{ env.TEST_TAG }} | xargs echo stdout= | tr -d '[:space:]' >> $GITHUB_OUTPUT
         id: docker-run
       - run: sleep 15s
         shell: bash

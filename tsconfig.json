@@ -25,7 +25,12 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "es2022",
-		"types": ["vitest/globals", "node", "vite/client"]
+		"types": [
+			"vitest/globals",
+			"node",
+			"vite/client",
+			"./src/server/utils/debug.d.ts"
+		]
 	},
 	"display": "Base",
 	"exclude": ["node_modules"],

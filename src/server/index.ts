@@ -1,9 +1,13 @@
-import "dotenv/config";
+import "./utils/dotenv";
+import "./utils/debug";
+import debug from "debug";
 
 import app from "./app";
+
+const log = debug("server");
 
 const PORT = process.env.PORT_SERVER;
 
 app.listen(PORT, () => {
-	console.log(`server:${PORT}`);
+	log(`server:${PORT}`);
 });

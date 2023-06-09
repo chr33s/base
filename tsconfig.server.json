@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"jsx": "preserve",
+		"lib": ["es2022"],
+		"noEmit": false,
+		"outDir": "./dist/server",
+		"types": ["node", "./src/server/utils/debug.d.ts"]
+	},
+	"display": "Base/server",
+	"extends": "./tsconfig.json",
+	"include": ["./src/server/**/*.ts"]
+}

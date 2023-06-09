@@ -9,10 +9,10 @@
 	"scripts": {
 		"build": "npm-run-all --parallel build:*",
 		"build:client": "vite build",
-		"build:server": "rollup --config rollup.config.ts --configPlugin rollup-plugin-esbuild",
+		"build:server": "tsc --project tsconfig.server.json",
 		"clean": "rm -rf .eslintcache dist node_modules/.{cache,vite,vitest}",
 		"checks": "npm-run-all --sequential format lint typecheck",
-		"docker:build": "DOCKER_BUILDKIT=1 docker build --rm --tag ${npm_package_name/@}:$npm_package_version .",
+		"docker:build": "export $(cat .env.local | xargs); DOCKER_BUILDKIT=1 docker build --build-arg LOGTAIL_TOKEN_DOCKER=${LOGTAIL_TOKEN_DOCKER} --rm --tag ${npm_package_name/@}:$npm_package_version .",
 		"docker:run": "export $(cat .env.local | xargs); docker run --rm --env-file .env.local --publish ${PORT_CLIENT}:${PORT_SERVER}/tcp --name $(echo ${npm_package_name/@} | sed -r 's/[/]/-/g') ${npm_package_name/@}:$npm_package_version",
 		"docker:publish": "docker push ghcr.io/${npm_package_name/@}:$npm_package_version",
 		"format": "prettier --write '**/*.{css,html,js,json,jsx,md,svg,ts,tsx,yml}'",
@@ -30,17 +30,19 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@logtail/pino": "0.4.0",
 		"@sentry/node": "7.54.0",
 		"debug": "4.3.4",
-		"express": "4.18.2"
+		"dotenv": "16.1.4",
+		"express": "4.18.2",
+		"pino": "8.14.1",
+		"pino-debug": "2.0.0"
 	},
 	"devDependencies": {
 		"@graphql-eslint/eslint-plugin": "3.19.1",
 		"@ladle/react": "2.14.0",
+		"@logtail/types": "0.4.0",
 		"@playwright/test": "1.35.0",
-		"@rollup/plugin-commonjs": "25.0.0",
-		"@rollup/plugin-json": "6.0.0",
-		"@rollup/plugin-node-resolve": "15.1.0",
 		"@sentry/react": "7.54.0",
 		"@sentry/vite-plugin": "2.2.1",
 		"@types/debug": "4.1.8",
@@ -53,7 +55,6 @@
 		"@typescript-eslint/eslint-plugin": "5.59.9",
 		"@typescript-eslint/parser": "5.59.9",
 		"@vitejs/plugin-react": "4.0.0",
-		"dotenv": "16.1.4",
 		"eslint": "8.42.0",
 		"eslint-config-prettier": "8.8.0",
 		"eslint-plugin-react": "7.32.2",
@@ -69,7 +70,6 @@
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-test-renderer": "18.2.0",
-		"rollup-plugin-esbuild": "5.0.0",
 		"stylelint": "15.7.0",
 		"stylelint-config-standard": "33.0.0",
 		"stylelint-order": "6.0.3",

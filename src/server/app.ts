@@ -6,10 +6,9 @@ import path from "node:path";
 import * as middleware from "./middleware";
 import { Exception } from "./utils/Exception";
 
-const log = debug("server:app");
-
 const isProduction = process.env.NODE_ENV === "production";
 const assetPath = isProduction ? "./client" : "./dist/client";
+const log = debug("server:app");
 
 const app = express();
 app.disable("x-powered-by");
