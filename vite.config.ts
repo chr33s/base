@@ -1,3 +1,4 @@
+import { sentryVitePlugin as sentry } from "@sentry/vite-plugin";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig, loadEnv } from "vite";
@@ -16,8 +17,17 @@ export default defineConfig(({ mode }) => {
 		clearScreen: false,
 		define: {
 			"process.env.NODE_ENV": JSON.stringify(mode ?? ""),
+			"process.env.SENTRY_DSN": JSON.stringify(env.SENTRY_DSN ?? ""),
 		},
-		plugins: [react()],
+		plugins: [
+			sentry({
+				authToken: env.SENTRY_AUTH_TOKEN,
+				org: env.SENTRY_ORG,
+				project: env.SENTRY_PROJECT,
+				telemetry: false,
+			}),
+			react(),
+		],
 		resolve: {
 			alias: Object.entries(tsconfig.compilerOptions.paths).reduce(
 				(alias, [k, a]) => ({

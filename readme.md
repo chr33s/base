@@ -10,9 +10,10 @@
 3. twelve-factor app (.env)
 4. checks [lint,format](css, ts, actions, docker)
 5. tests [unit, e2e]
-6. gitops (.github/\*)
-7. security (public/\*.txt) & fail-closed
-8. typescript || typescript.js-doc (if !team support)
-9. Dockerfile (~deterministic builds)
-10. Documentation as code [package.scripts, name()]
-11. Component driven UI [ladle/stories]
+6. sentry (catch bugs)
+7. gitops (.github/\*)
+8. security (public/\*.txt) & fail-closed
+9. typescript || typescript.js-doc (if !team support)
+10. Dockerfile (~deterministic builds)
+11. Documentation as code [package.scripts, name()]
+12. Component driven UI [ladle/stories]
