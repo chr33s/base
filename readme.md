@@ -2,6 +2,15 @@
 
 > [client, server] starter
 
+## Quickstart
+
+```sh
+cp .env .env.local # edit
+npm install
+npm run test && npm run test:e2e
+npm start
+```
+
 ## Notes
 
 0. !monorepo simplicity (+microservice/apps)
