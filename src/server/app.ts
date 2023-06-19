@@ -49,6 +49,15 @@ app.post(
 );
 
 app.get(
+	"/api",
+	middleware.promisify((req: express.Request, res: express.Response) => {
+		log("/api");
+
+		res.send({ status: "ok" });
+	})
+);
+
+app.get(
 	"/*",
 	middleware.promisify((req: express.Request, res: express.Response) => {
 		log("/");

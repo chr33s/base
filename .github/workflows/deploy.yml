@@ -70,5 +70,12 @@ jobs:
           # linux/arm64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-      - run: echo "releasing ${{ github.repository }}:${{ github.ref_name }}"
+      - uses: ruby/setup-ruby@v1
         if: github.ref_type == 'tag'
+        with:
+          bundler-cache: true
+          ruby-version: "3.2"
+      - run: mrsk deploy --skip-push --version ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+        if: github.ref_type == 'tag'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

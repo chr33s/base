@@ -1,0 +1,43 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (7.0.5)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+    bcrypt_pbkdf (1.1.0)
+    concurrent-ruby (1.2.2)
+    dotenv (2.8.1)
+    ed25519 (1.3.0)
+    i18n (1.14.1)
+      concurrent-ruby (~> 1.0)
+    minitest (5.18.0)
+    mrsk (0.13.2)
+      activesupport (>= 7.0)
+      bcrypt_pbkdf (~> 1.0)
+      dotenv (~> 2.8)
+      ed25519 (~> 1.2)
+      net-ssh (~> 7.0)
+      sshkit (~> 1.21)
+      thor (~> 1.2)
+      zeitwerk (~> 2.5)
+    net-scp (4.0.0)
+      net-ssh (>= 2.6.5, < 8.0.0)
+    net-ssh (7.1.0)
+    sshkit (1.21.4)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
+    thor (1.2.2)
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+    zeitwerk (2.6.8)
+
+PLATFORMS
+  arm64-darwin-22
+
+DEPENDENCIES
+  mrsk (~> 0.13.2)
+
+BUNDLED WITH
+   2.4.13

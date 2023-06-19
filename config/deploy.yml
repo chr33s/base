@@ -1,0 +1,61 @@
+builder:
+  local:
+    arch: arm64
+    host: unix:///Users/<%= `whoami`.strip %>/.docker/run/docker.sock
+  remote:
+    arch: amd64
+    host: ssh://root@192.168.0.1
+
+env:
+  clear:
+    - LOG_LEVEL info
+    - NODE_ENV production
+    - PORT_SERVER 8081
+  secret:
+    - LOGTAIL_TOKEN
+    - SENTRY_AUTH_TOKEN
+    - SENTRY_DSN
+    - SENTRY_ORG
+    - SENTRY_PROJECT
+
+healthcheck:
+  path: /api
+  port: 8081
+
+image: chr33s/base
+
+registry:
+  server: ghcr.io
+  username: chr33s
+  password:
+    - GITHUB_TOKEN
+
+servers:
+  web:
+    hosts:
+      - 192.168.0.1
+    labels:
+      traefik.http.routers.web.rule: Host(`chr33s.dev`)
+      traefik.http.routers.web_secure.entrypoints: websecure
+      traefik.http.routers.web_secure.rule: Host(`app.chr33s.dev`)
+      traefik.http.routers.web_secure.tls: true
+      traefik.http.routers.web_secure.tls.certresolver: letsencrypt
+    options:
+      "add-host": "host.docker.internal:host-gateway"
+service: chr33s/base
+
+traefik:
+  args:
+    accesslog: true
+    accesslog.format: json
+    entryPoints.web.address: ":80"
+    entryPoints.websecure.address: ":443"
+    certificatesResolvers.letsencrypt.acme.email: "chr33s@icloud.com"
+    certificatesResolvers.letsencrypt.acme.storage: "/tmp/acme.json"
+    certificatesResolvers.letsencrypt.acme.httpchallenge: true
+    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+  options:
+    publish:
+      - "443:8081"
+    volume:
+      - "/tmp/acme.json:/tmp/acme.json"
