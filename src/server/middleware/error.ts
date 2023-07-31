@@ -9,7 +9,7 @@ function handler(
 	err: Exception,
 	req: express.Request,
 	res: express.Response,
-	next: express.NextFunction
+	next: express.NextFunction,
 ) {
 	log(err);
 
@@ -25,7 +25,7 @@ function middleware(methods: string[] = []) {
 	return (
 		req: express.Request,
 		res: express.Response,
-		next: express.NextFunction
+		next: express.NextFunction,
 	) => {
 		if (!methods?.includes(req.method)) {
 			next(new Exception({ code: 405 }));

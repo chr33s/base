@@ -12,7 +12,7 @@ export default {
 				use: {
 					...devices[browser],
 				},
-			})
+			}),
 		),
 		{
 			name: "Mobile Chrome",

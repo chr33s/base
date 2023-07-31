@@ -34,10 +34,10 @@ export default defineConfig(({ mode }) => {
 				(alias, [k, a]) => ({
 					...alias,
 					[k.replace(/\/\*$/, "")]: a.map((v) =>
-						path.resolve(__dirname, v.replace(/\/\*$/, ""))
+						path.resolve(__dirname, v.replace(/\/\*$/, "")),
 					),
 				}),
-				{}
+				{},
 			),
 		},
 		server: {

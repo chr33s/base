@@ -35,7 +35,7 @@ app.post(
 		log("/api/error");
 
 		throw new Exception({ code: 400 });
-	})
+	}),
 );
 
 app.post(
@@ -45,7 +45,7 @@ app.post(
 		log("/api");
 
 		res.send({ status: "ok" });
-	})
+	}),
 );
 
 app.get(
@@ -54,7 +54,7 @@ app.get(
 		log("/api");
 
 		res.send({ status: "ok" });
-	})
+	}),
 );
 
 app.get(
@@ -63,7 +63,7 @@ app.get(
 		log("/");
 
 		res.sendFile(path.resolve(assetPath, "index.html"));
-	})
+	}),
 );
 
 app.use(Sentry.Handlers.errorHandler());
