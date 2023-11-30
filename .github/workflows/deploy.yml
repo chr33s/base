@@ -75,7 +75,7 @@ jobs:
         with:
           bundler-cache: true
           ruby-version: "3.2"
-      - run: mrsk deploy --skip-push --version ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+      - run: kamal deploy --skip-push --version ghcr.io/${{ github.repository }}:${{ github.ref_name }}
         if: github.ref_type == 'tag'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,4 +2,4 @@
 
 source "https://rubygems.org"
 
-gem "mrsk", "~> 0.13.2"
+gem "kamal", "~> 1.3.0"
