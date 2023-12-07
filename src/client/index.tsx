@@ -16,8 +16,11 @@ if (process.env.NODE_ENV === "development") {
 	Spotlight.init();
 }
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-);
+const container = document.getElementById("root");
+if (container) {
+	ReactDOM.createRoot(container).render(
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>,
+	);
+}
