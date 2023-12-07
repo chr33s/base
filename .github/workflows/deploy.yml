@@ -27,16 +27,16 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: docker/setup-qemu-action@v2
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
-      - uses: docker/login-action@v2
+      - uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/metadata-action@v4
+      - uses: docker/metadata-action@v5
         id: meta
         with:
           images: |
@@ -48,8 +48,8 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
-      - uses: docker/setup-buildx-action@v2
-      - uses: docker/build-push-action@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v5
         with:
           context: .
           load: true
@@ -61,7 +61,7 @@ jobs:
         shell: bash
       - run: docker stop ${{ steps.docker-run.outputs.stdout }}
       - run: docker rmi ${{ env.TEST_TAG }}
-      - uses: docker/build-push-action@v4
+      - uses: docker/build-push-action@v5
         with:
           context: .
           labels: ${{ steps.meta.outputs.labels }}
