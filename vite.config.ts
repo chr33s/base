@@ -1,4 +1,5 @@
 import { sentryVitePlugin as sentry } from "@sentry/vite-plugin";
+import spotlightSidecar from "@spotlightjs/sidecar/vite-plugin";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { defineConfig, loadEnv } from "vite";
@@ -27,6 +28,7 @@ export default defineConfig(({ mode }) => {
 				project: env.SENTRY_PROJECT,
 				telemetry: false,
 			}),
+			spotlightSidecar(),
 			react(),
 		],
 		resolve: {

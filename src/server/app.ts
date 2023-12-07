@@ -6,8 +6,9 @@ import path from "node:path";
 import * as middleware from "./middleware";
 import { Exception } from "./utils/Exception";
 
-const isProduction = process.env.NODE_ENV === "production";
-const assetPath = isProduction ? "./client" : "./dist/client";
+const isEnv = (env: "development" | "production") =>
+	process.env.NODE_ENV === env;
+const assetPath = isEnv("production") ? "./client" : "./dist/client";
 const log = debug("server:app");
 
 const app = express();
@@ -21,7 +22,8 @@ Sentry.init({
 		new Sentry.Integrations.Express({ app }),
 		...Sentry.autoDiscoverNodePerformanceMonitoringIntegrations(),
 	],
-	tracesSampleRate: isProduction ? 0.01 : 1.0,
+	spotlight: isEnv("development"),
+	tracesSampleRate: isEnv("production") ? 0.01 : 1.0,
 });
 
 app.use(Sentry.Handlers.requestHandler());
